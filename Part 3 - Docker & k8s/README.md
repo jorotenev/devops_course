@@ -1,0 +1,2 @@
+* [docker slides](https://docs.google.com/presentation/d/19SWvYEKU1gQY2VXyfve1q71tBE_FBTvlbIkZ3sX3Uow/edit?usp=sharing)
+* [k8s slides](https://docs.google.com/presentation/d/1VBNTWSbkyiZJwvKGQXmVgqGg3oXcBEEaWx_7CAxUQEw/edit?usp=sharing)
