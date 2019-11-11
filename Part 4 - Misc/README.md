@@ -1,0 +1,1 @@
+* Jenkins, Terraform, Ansible, Misc  [slides](https://docs.google.com/presentation/d/1NGNM6PxF4WAb1uCf-QeucVzWdTpVZ2M-ejb70TAoOd0/edit?usp=sharing)
