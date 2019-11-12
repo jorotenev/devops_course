@@ -1,0 +1,12 @@
+# https://docs.docker.com/compose/compose-file
+version: '3'
+services:
+  web:
+    restart: "no"
+    build: . # build an image using the ./Dockerfile
+    ports:
+      - "5000:5000"
+    expose:
+      - "5000"
+#    command: flask run --host=0.0.0.0
+
