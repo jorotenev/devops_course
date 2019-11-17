@@ -39,3 +39,27 @@
 * Be cautious about line endings (there’s a different standard for Linux and Windows). Git has a setting that lets you develop with whatever line ending you want, but when you commit, text files are converted to \n.
 * You can use git through the CLI (windows cmd, linux bash shell) or via a GUI - a popular one is SourceTree. Most IDEs have git integration - e.g. PyCharm, Visual Studio (Code). 
 * Personal opinion - good idea to start out with the CLI to get a feeling of git and then move to a GUI if you need.
+
+* `git clean`
+    * can remove items not tracked by git or alternatively gitignored files
+* `git commit --amend` - reword the last commit you've made and haven't pushed yet
+* `git rebase`
+    * [forked repo](_images/forked_repo.png) & [rebased master onto feature](_images/rebased_master_onto_feature.png)
+    * "The first thing to understand about git rebase is that it solves the same problem as git merge. Both of these commands are designed to integrate changes from one branch into another branch—they just do it in very different ways." [[reference](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)]
+     ```bash
+    $ git branch
+    feature
+    $ git rebase master
+    First, rewinding head to replay your work on top of it...                                                            Applying: adding feature    
+    Applying: adding feature 2
+    ```
+    * the rebase will overwrite history - e.g. it will change the sha-1s and timestamps of the commits from the feature branch 
+    * rule of thumb - don't rebase onto public branches (e.g. master)
+    * merging `feature` into `master` will be done via fast-forward. no need for merge commit.
+* squashing commits
+    * `git rebase -i HEAD~<n>`. `n` - how many commits to consider during the squash. 
+    * in the interactive session order is from oldest to newest. 
+    * [before squashing](_images/before_squash.png)
+    * [after squashing](_images/after_squash.png)
+* what is HEAD
+    * reference to the current commit of the current branch
