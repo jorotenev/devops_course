@@ -29,6 +29,7 @@
 * However, a powerful concept of git is branching. You can branch out from the default, master, branch to a different branch. Once on the new branch, when you commit, your commits are applied on this branch
 * This is useful if you want to work on an experimental feature, continuing from your existing work, but without cluttering your “master” branch which has a working version of the project. Working on a new branch enables you to keep your master history clean, while you are working on the new feature. When on a new branch, you can still commit to it.
 * If you are happy with the new feature, you can merge the new branch into master. * * This will apply all commits from the new branch to the master branch. If you are unhappy with the new feature, you can just discard the new branch and switch back to master.
+* ([demo](https://gist.github.com/jorotenev/ef2c84860fb7df87c2bcb7737bf9ffad#file-git-demo-sh))
 
 # Git for DevOps
 * In the context of DevOps, we care about git because most of the times the application’s code is hosted via git (or some other VCS system). 
@@ -39,7 +40,11 @@
 * Be cautious about line endings (there’s a different standard for Linux and Windows). Git has a setting that lets you develop with whatever line ending you want, but when you commit, text files are converted to \n.
 * You can use git through the CLI (windows cmd, linux bash shell) or via a GUI - a popular one is SourceTree. Most IDEs have git integration - e.g. PyCharm, Visual Studio (Code). 
 * Personal opinion - good idea to start out with the CLI to get a feeling of git and then move to a GUI if you need.
-
+* `.gitignore` - add files that you don't want to track here
+* hooks
+    * client-hooks
+        * stored in `.git/hooks`. must be executable file without any extension
+    * server-hooks
 * `git clean`
     * can remove items not tracked by git or alternatively gitignored files
 * `git commit --amend` - reword the last commit you've made and haven't pushed yet
