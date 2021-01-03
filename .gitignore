@@ -1,2 +1,4 @@
 *.pdf
 *.htm*
+credentials.json
+.idea

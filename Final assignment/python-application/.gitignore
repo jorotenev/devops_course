@@ -1,6 +1,0 @@
-.idea
-*.pyc
-__pycache__
-.env_prod
-.env_dev
-.env

@@ -1,5 +1,5 @@
 # DevOps Course
-Repo holding notes for a DevOps course I taught in a private educational center in Sofia, 2019.
+Repo holding notes for a DevOps course within Progressbg.net
 
 The notes in the repo are written as an additional learning aid for the students of the DevOps course - they include the content which was delivered during the lecture sessions.
 

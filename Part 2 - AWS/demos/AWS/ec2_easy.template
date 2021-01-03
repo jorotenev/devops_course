@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: "Simple template to create an EC2 instance with apache on it"
+Parameters: 
+  Environment:
+    Type: String
+    AllowedValues:
+      - qa
+      - prod
+    Default: qa
+  SSHAllowedCIDR:
+    Type: String
+    Description: The IP from which we can use ssh to the ec2 instance
+    Default: 0.0.0.0/0
+
+
+Mappings: 
+  PerEnv:
+    qa:
+      InstanceSize: t3.nano
+    prod:
+      InstanceSize: t3.small
+  PerRegion:
+    eu-west-1:
+      AMI: ami-06358f49b5839867c
+      KeyName: 'aws2019-eu'
+    us-east-1:
+      AMI: ami-07d0cf3af28718ef8
+      KeyName: 'aws2019-us'
+
+Resources: 
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Ooopen to the world :)
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: !Ref SSHAllowedCIDR
+
+        
+  WebServer:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !FindInMap [PerEnv, !Ref Environment, InstanceSize ]
+      ImageId: !FindInMap [PerRegion, !Ref "AWS::Region", AMI ]
+      KeyName: !FindInMap [PerRegion, !Ref "AWS::Region", KeyName]
+      Tags: 
+        - Key: 'namespace'
+          Value: 'progressbg'
+        - Key: 'type'
+          Value: 'testing'
+      SecurityGroupIds:
+        - !Ref SecurityGroup
+      UserData: 
+        !Base64 |
+          #!/bin/bash
+          set -e
+          log_file=/var/log/bootstrap.log
+          touch $log_file
+          echo "[$(date)] starting" > $log_file
+          apt update
+          apt install apache2 -y
+
+          echo "<h1>Hi there :) </h1>" > /var/www/html/index.html 
+     
+          echo "[$(date)] done" > $log_file
