@@ -1,0 +1,17 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+  pre_build:
+    commands: 
+      - aws s3 sync s3://progress-devops-codebuild-script /opt/scripts
+      - chmod -R +x /opt/scripts && ls /opt/scripts
+      - /bin/bash /opt/scripts/pre_build.sh
+  build:
+    commands:
+      - /bin/bash /opt/scripts/build.sh
+  post_build:
+    commands:
+      - /bin/bash /opt/scripts/post_build.sh
+
